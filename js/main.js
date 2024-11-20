@@ -400,3 +400,32 @@
 	});		
 
 })(jQuery);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+	const items = document.querySelectorAll('.carousel-item');
+	const modal = document.getElementById('bi-modal');
+	const fullscreenImg = document.getElementById('bi-fullscreen');
+	const closeBtn = document.querySelector('.bi-modal .close');
+
+	// Abrir modal com imagem clicada
+	items.forEach(item => {
+			item.addEventListener('click', () => {
+					const imgSrc = item.getAttribute('data-bi');
+					fullscreenImg.src = imgSrc;
+					modal.style.display = 'flex';
+			});
+	});
+
+	// Fechar modal
+	closeBtn.addEventListener('click', () => {
+			modal.style.display = 'none';
+	});
+
+	// Fechar modal ao clicar fora da imagem
+	modal.addEventListener('click', (e) => {
+			if (e.target === modal) {
+					modal.style.display = 'none';
+			}
+	});
+});
